@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+        .frag-modal {
+          --main_color: {{frag_confirm_maincolor}};
+          background: var(--main_color);
+          height: 1px;
+          overflow: hidden;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: width 0.5s ease 0.5s, height 0.5s ease;
+          width: 0;
+        }
+      
+        .frag-modal-content {
+          color: transparent;
+          font-family: "Consolas", arial, sans-serif;
+          font-size: 2em;
+          position: absolute;
+          top: 50%;
+          text-align: center;
+          transform: translate3d(0, -50%, 0);
+          transition: color 0.5s ease;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 0.8em;
+        }
+      
+        .frag-modal-content form {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+      
+        .frag-label {
+          color: var(--main_color);
+          cursor: pointer;
+          font-family: "Consolas", arial, sans-serif;
+          font-size: 2em;
+          position: fixed;
+          left: 50%;
+          top: 50%;
+          text-transform: uppercase;
+          transform: translate(-50%, -50%);
+          transition: color 0.5s ease 0.5s;
+        }
+      
+        #frag-btn-toggle {
+          cursor: pointer;
+          height: 0;
+          opacity: 0;
+          width: 0;
+        }
+      
+        #frag-btn-toggle:focus {
+          outline: none;
+        }
+      
+        #frag-btn-toggle:checked {
+          height: 40px;
+          opacity: 1;
+          position: fixed;
+          right: 20px;
+          top: 20px;
+          z-index: 1;
+          -webkit-appearance: none;
+          width: 40px;
+        }
+      
+        #frag-btn-toggle:checked::before,
+        #frag-btn-toggle:checked::after {
+          border-top: 1px solid #fff;
+          content: "";
+          display: block;
+          position: absolute;
+          top: 50%;
+          width: 100%;
+        }
+      
+        #frag-btn-toggle:checked::before {
+          transform: rotate(45deg);
+        }
+      
+        #frag-btn-toggle:checked::after {
+          transform: rotate(-45deg);
+        }
+      
+        #frag-btn-toggle:checked + .frag-label {
+          color: #fff;
+          transition: color 0.5s ease;
+        }
+      
+        #frag-btn-toggle:checked ~ .frag-modal {
+          height: 100%;
+          width: 100%;
+          transition: width 0.5s ease, height 0.5s ease 0.5s;
+        }
+      
+        #frag-btn-toggle:checked ~ .frag-modal .frag-modal-content {
+          color: #fff;
+          transition: color 0.5s ease 0.5s;
+        }
+      
+        .frag-confirm-btn {
+          background: rgba(255, 255, 255, 0.616);
+          border: none;
+          color: var(--main_color);
+          font-size: 0.6em;
+          padding: 0.1em 0.5em;
+          border-radius: 0.4em;
+          cursor: pointer;
+          backdrop-filter: blur(22px);
+        }
+      
+        .frag-confirm-btn:hover {
+          background: white;
+        }
+      </style>
+      
+      <input id="frag-btn-toggle" type="checkbox" />
+      <label for="frag-btn-toggle" class="frag-label">{{button_name}}</label>
+      <div class="frag-modal">
+        <div class="frag-modal-content">
+          {{inner_content}}
+          <form action="{{confirm_action}}" method="{{confirm_method}}">
+            {% csrf_token %}
+            <button class="frag-confirm-btn">Ok</button>
+          </form>
+        </div>
+      </div>
+      
+
+    <script></script>
+  </body>
+</html>
