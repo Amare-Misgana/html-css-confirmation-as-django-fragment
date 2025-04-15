@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %}Check{% endblock %} 
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'tester/css/tester.css' %}">
+  <style>
+  .frag-modal {
+    --main_color: {{frag_confirm_maincolor}};
+  }
+  </style>
+{% endblock %}
+
+
+{% block content %} 
+  {% include 'fragments/confirm.html' %}
+{% endblock %}
+

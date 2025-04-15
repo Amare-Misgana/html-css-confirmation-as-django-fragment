@@ -1,0 +1,11 @@
+<input id="frag-btn-toggle" type="checkbox" />
+<label for="frag-btn-toggle" class="frag-label">{{button_name}}</label>
+<div class="frag-modal">
+  <div class="frag-modal-content">
+    {{inner_content}}
+    <form action="{{confirm_action}}" method="{{confirm_method}}">
+      {% csrf_token %}
+      <button class="frag-confirm-btn">Ok</button>
+    </form>
+  </div>
+</div>
